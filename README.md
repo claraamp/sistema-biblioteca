@@ -1,4 +1,4 @@
-# Engenharia de Software - Trabalho Prático
+# Engenharia de Software I - Trabalho Prático
 Trabalho prático para a matéria MATA62 - Engenharia de Software I.
 
 Dupla: Maria Clara Andrade Magalhães Paternostro D'Oliveira e João Nunes.
