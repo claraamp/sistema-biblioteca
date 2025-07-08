@@ -13,4 +13,12 @@ public class Emprestimo {
         this.dataEmprestimo = LocalDate.now();
         this.dataDevolucao = dataDevolucao;
     }
+
+    public LocalDate getDataDevolucao() {
+        return dataDevolucao;
+    }
+
+    public Exemplar getExemplar() {
+        return exemplar;
+    }
 }

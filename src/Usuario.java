@@ -1,11 +1,14 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Usuario {
-    protected String idUsuario;
-    protected String nome;
+    private String idUsuario;
+    private String nome;
+    private int tempoEmprestimo;
     private List<Emprestimo> emprestimos;
     private List<Reserva> reservas;
+    protected IRegraEmprestimo regraEmprestimo;
 
 
     public Usuario(String idUsuario, String nome, List<Emprestimo> emprestimos, List<Reserva> reservas) {
@@ -13,6 +16,16 @@ public abstract class Usuario {
         this.nome = nome;
         this.emprestimos = new ArrayList<>();
         this.reservas = new ArrayList<>();
+    }
+
+    public boolean isDevedor() {
+        final LocalDate hoje = LocalDate.now();
+        for (Emprestimo emprestimo : emprestimos) {
+            if (hoje.isAfter(emprestimo.getDataDevolucao())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public String getNome() {
@@ -26,6 +39,5 @@ public abstract class Usuario {
     public List<Reserva> getReservas() {
         return reservas;
     }
-
 
 }
