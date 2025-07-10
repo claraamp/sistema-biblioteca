@@ -50,6 +50,8 @@ public abstract class Usuario {
         this.emprestimos.add(emprestimo);
     }
 
+    public void removerEmprestimo(Emprestimo emprestimo) { this.emprestimos.remove(emprestimo); }
+
     public String getIdUsuario() { return idUsuario; }
     public String getNome() {
         return nome;

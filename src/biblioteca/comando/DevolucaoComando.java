@@ -1,22 +1,20 @@
 package biblioteca.comando;
 
-
-import biblioteca.servico.EmprestimoService;
+import biblioteca.servico.DevolucaoService;
 import biblioteca.repositorio.Repositorio;
 import biblioteca.dominio.Usuario;
 import biblioteca.dominio.Livro;
-import biblioteca.excecao.EmprestimoException;
-import biblioteca.dominio.Emprestimo;
+import biblioteca.excecao.DevolucaoException;
 
 
-public class EmprestimoComando implements IComando {
+public class DevolucaoComando implements IComando {
 
-    private final EmprestimoService emprestimoService;
+    private final DevolucaoService devolucaoService;
     private final String idUsuario;
     private final String idLivro;
 
-    public EmprestimoComando(EmprestimoService emprestimoService, String idUsuario, String idLivro) {
-        this.emprestimoService = emprestimoService;
+    public DevolucaoComando(DevolucaoService devolucaoService, String idUsuario, String idLivro) {
+        this.devolucaoService = devolucaoService;
         this.idUsuario = idUsuario;
         this.idLivro = idLivro;
     }
@@ -38,14 +36,10 @@ public class EmprestimoComando implements IComando {
         }
 
         try {
-            Emprestimo emprestimo = emprestimoService.realizarEmprestimo(usuario, livro);
+            devolucaoService.realizarDevolucao(usuario, livro);
+            System.out.println("Devolução do livro '" + livro.getTitulo() + "' por '" + usuario.getNome() + "' realizada.");
 
-            System.out.println("Empréstimo realizado!");
-            System.out.println("  - Usuário: " + usuario.getNome() + " (" + usuario.getIdUsuario() + ")");
-            System.out.println("  - Livro: " + livro.getTitulo() + " (" + livro.getIdLivro() + ")");
-            System.out.println("  - Data para devolução: " + emprestimo.getDataDevolucao());
-
-        } catch (EmprestimoException e) {
+        } catch (DevolucaoException e) {
             System.out.println(e.getMessage());
         }
     }

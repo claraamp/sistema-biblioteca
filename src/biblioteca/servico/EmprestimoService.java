@@ -17,10 +17,6 @@ public class EmprestimoService {
 
         Optional<Exemplar> exemplarDisponivelOpt = livro.getExemplarDisponivel();
 
-        if (exemplarDisponivelOpt.isEmpty()) {
-            throw new EmprestimoException("Falha inesperada: Não há exemplares disponíveis mesmo após a validação.");
-        }
-
         Exemplar exemplar = exemplarDisponivelOpt.get();
 
         LocalDate dataEmprestimo = LocalDate.now();

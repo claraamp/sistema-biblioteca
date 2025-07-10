@@ -1,5 +1,6 @@
 package biblioteca;
 
+import biblioteca.servico.DevolucaoService;
 import biblioteca.servico.EmprestimoService;
 import biblioteca.repositorio.Repositorio;
 import biblioteca.comando.*;
@@ -9,11 +10,11 @@ import java.util.Scanner;
 public class SistemaBiblioteca {
 
     private final EmprestimoService emprestimoService;
-    // private DevolucaoService devolucaoService; // Exemplo para futuros comandos
+    private DevolucaoService devolucaoService;
 
     public SistemaBiblioteca() {
         this.emprestimoService = new EmprestimoService();
-        // this.devolucaoService = new DevolucaoService();
+        this.devolucaoService = new DevolucaoService();
     }
 
 
@@ -36,7 +37,6 @@ public class SistemaBiblioteca {
             System.out.print("\nComando> ");
             String linha = scanner.nextLine();
 
-            // A condição de saída agora é "sai", conforme o menu
             if ("sai".equalsIgnoreCase(linha.trim())) {
                 System.out.println("Encerrando o sistema.");
                 break;
@@ -70,7 +70,8 @@ public class SistemaBiblioteca {
                     System.out.println("Erro: Formato incorreto. Use: dev <cod_usuario> <cod_livro>");
                     break;
                 }
-                System.out.println("INFO: Funcionalidade 'devolução' ainda não implementada.");
+                IComando comandoDev = new DevolucaoComando(this.devolucaoService, partes[1], partes[2]);
+                comandoDev.execute();
                 break;
 
             case "res":
