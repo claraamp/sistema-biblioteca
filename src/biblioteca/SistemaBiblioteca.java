@@ -92,10 +92,11 @@ public class SistemaBiblioteca {
 
             case "liv":
                 if (partes.length != 2) {
-                    System.out.println("Erro: Formato incorreto. Use: liv <cod_livro>");
+                    System.out.println("ERRO: Formato incorreto. Use: liv <cod_livro>");
                     break;
                 }
-                System.out.println("INFO: Funcionalidade 'consultar livro' ainda não implementada.");
+                IComando comandoLiv = new ConsultaLivroComando(partes[1]);
+                comandoLiv.execute();
                 break;
 
             case "usu":

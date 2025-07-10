@@ -12,6 +12,8 @@ public class Exemplar {
         this.emprestimoCorrente = null;
     }
 
+    public String getCodigoExemplar() { return codigoExemplar; }
+
     public Livro getLivro() {
         return livro;
     }

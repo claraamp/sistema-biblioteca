@@ -16,6 +16,10 @@ public class Emprestimo {
         this.dataDevolucao = dataDevolucao;
     }
 
+    public LocalDate getDataEmprestimo() { return dataEmprestimo; }
+
+    public Usuario getUsuario() { return usuario; }
+
     public LocalDate getDataDevolucao() {
         return dataDevolucao;
     }
