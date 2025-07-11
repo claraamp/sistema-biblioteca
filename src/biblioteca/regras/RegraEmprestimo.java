@@ -4,6 +4,6 @@ import biblioteca.dominio.Usuario;
 import biblioteca.dominio.Livro;
 import biblioteca.excecao.EmprestimoException;
 
-public interface IRegraEmprestimo {
+public interface RegraEmprestimo {
     void validaEmprestimo(Usuario usuario, Livro livro) throws EmprestimoException;
 }

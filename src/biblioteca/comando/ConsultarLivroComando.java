@@ -11,16 +11,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
-public class ConsultaLivroComando implements IComando {
+public class ConsultarLivroComando implements Comando {
 
-    private final String idLivro;
-
-    public ConsultaLivroComando(String idLivro) {
-        this.idLivro = idLivro;
-    }
+    public ConsultarLivroComando() {}
 
     @Override
-    public void execute() {
+    public void execute(CarregadorParametros carregadorParametros) {
+        String idLivro = carregadorParametros.getParametroUm();
+
         Repositorio repositorio = Repositorio.obterInstancia();
         Livro livro = repositorio.buscarLivroPorId(idLivro);
 

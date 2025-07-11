@@ -1,29 +1,29 @@
-package servico;
+package biblioteca.servico;
 
-import dominio.Livro;
-import dominio.Reserva;
-import dominio.Usuario;
-import repositorio.BibliotecaRepositorio;
+import biblioteca.dominio.Livro;
+import biblioteca.dominio.Reserva;
+import biblioteca.dominio.Usuario;
+import biblioteca.excecao.ReservaException;
 
 import java.time.LocalDate;
 
 public class ReservaService {
 
-    private BibliotecaRepositorio repositorio = BibliotecaRepositorio.getInstancia();
+    public Reserva realizarReserva(Usuario usuario, Livro livro) throws ReservaException {
 
-    public void reservarLivro(int codUsuario, int codLivro) {
-        Usuario usuario = repositorio.buscarUsuarioPorCodigo(codUsuario);
-        Livro livro = repositorio.buscarLivroPorCodigo(codLivro);
-
-        if (usuario == null || livro == null) {
-            System.out.println("Usuário ou livro não encontrado.");
-            return;
+        if (usuario.temEmprestimoDoLivro(livro)) {
+            throw new ReservaException("Você não pode reservar um livro que já está em sua posse.");
         }
 
-        Reserva reserva = new Reserva(livro, LocalDate.now(), usuario);
-        usuario.adicionarReserva(reserva);
-        livro.adicionarReserva(reserva);
+        if (livro.usuarioTemReserva(usuario)) {
+            throw new ReservaException("Você já possui uma reserva para este livro.");
+        }
 
-        System.out.println("Reserva realizada com sucesso.");
+        Reserva novaReserva = new Reserva(livro, LocalDate.now(), usuario);
+
+        usuario.adicionarReserva(novaReserva);
+        livro.adicionarReserva(novaReserva);
+
+        return novaReserva;
     }
 }

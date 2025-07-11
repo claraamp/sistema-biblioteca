@@ -1,6 +1,5 @@
 package biblioteca.comando;
 
-
 import biblioteca.servico.EmprestimoService;
 import biblioteca.repositorio.Repositorio;
 import biblioteca.dominio.Usuario;
@@ -9,20 +8,17 @@ import biblioteca.excecao.EmprestimoException;
 import biblioteca.dominio.Emprestimo;
 
 
-public class EmprestimoComando implements IComando {
+public class EmprestarComando implements Comando {
 
-    private final EmprestimoService emprestimoService;
-    private final String idUsuario;
-    private final String idLivro;
-
-    public EmprestimoComando(EmprestimoService emprestimoService, String idUsuario, String idLivro) {
-        this.emprestimoService = emprestimoService;
-        this.idUsuario = idUsuario;
-        this.idLivro = idLivro;
-    }
+    public EmprestarComando() {}
 
     @Override
-    public void execute() {
+    public void execute(CarregadorParametros carregadorParametros) {
+        String idUsuario = carregadorParametros.getParametroUm();
+        String idLivro = carregadorParametros.getParametroDois();
+
+        EmprestimoService emprestimoService = new EmprestimoService();
+
         Repositorio repositorio = Repositorio.obterInstancia();
         Usuario usuario = repositorio.buscarUsuarioPorId(idUsuario);
         Livro livro = repositorio.buscarLivroPorId(idLivro);
@@ -50,3 +46,4 @@ public class EmprestimoComando implements IComando {
         }
     }
 }
+

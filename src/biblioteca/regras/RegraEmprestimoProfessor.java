@@ -4,7 +4,7 @@ import biblioteca.dominio.Usuario;
 import biblioteca.dominio.Livro;
 import biblioteca.excecao.EmprestimoException;
 
-public class RegraEmprestimoProfessor implements IRegraEmprestimo{
+public class RegraEmprestimoProfessor implements RegraEmprestimo {
 
     @Override
     public void validaEmprestimo(Usuario usuario, Livro livro) throws EmprestimoException {

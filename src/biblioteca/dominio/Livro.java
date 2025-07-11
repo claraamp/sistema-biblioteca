@@ -26,15 +26,8 @@ public class Livro {
 
     public void adicionarExemplar(Exemplar e) { this.exemplares.add(e); }
 
-    public long getQuantidadeExemplaresDisponiveis() {
-        return exemplares.stream().filter(e -> !e.isEmprestado()).count();
-    }
-
-    public Optional<Exemplar> getExemplarDisponivel() {
-        return exemplares.stream().filter(e -> !e.isEmprestado()).findFirst();
-    }
-
     public void adicionarReserva(Reserva r) { this.reservas.add(r); }
+
     public void removerReservaParaUsuario(Usuario u) {
         reservas.removeIf(reserva -> reserva.getUsuario().equals(u));
     }
@@ -43,34 +36,33 @@ public class Livro {
         return reservas.stream().anyMatch(r -> r.getUsuario().equals(u));
     }
 
+    public long getQuantidadeExemplaresDisponiveis() {
+        return exemplares.stream().filter(e -> !e.isEmprestado()).count();
+    }
+    public Optional<Exemplar> getExemplarDisponivel() {
+        return exemplares.stream().filter(e -> !e.isEmprestado()).findFirst();
+    }
     public String getIdLivro() {
         return idLivro;
     }
-
     public String getTitulo() {
         return titulo;
     }
-
     public String getEditora() {
         return editora;
     }
-
     public List<String> getAutores() {
         return autores;
     }
-
     public String getEdicao() {
         return edicao;
     }
-
     public int getAnoDePublicacao() {
         return anoDePublicacao;
     }
-
     public List<Exemplar> getExemplares() {
         return exemplares;
     }
-
     public List<Reserva> getReservas() {
         return reservas;
     }

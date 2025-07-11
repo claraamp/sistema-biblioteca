@@ -1,6 +1,6 @@
 package biblioteca.dominio;
 
-import biblioteca.regras.IRegraEmprestimo;
+import biblioteca.regras.RegraEmprestimo;
 
 
 import java.time.LocalDate;
@@ -13,7 +13,7 @@ public abstract class Usuario {
     private String nome;
     private List<Emprestimo> emprestimos;
     private List<Reserva> reservas;
-    protected IRegraEmprestimo regraEmprestimo;
+    protected RegraEmprestimo regraEmprestimo;
 
 
     public Usuario(String idUsuario, String nome) {
@@ -33,14 +33,6 @@ public abstract class Usuario {
         return false;
     }
 
-    public abstract int getTempoEmprestimo();
-
-    public abstract int getLimiteEmprestimosAberto();
-
-    public List<Emprestimo> getEmprestimos() {
-        return emprestimos;
-    }
-
     public boolean temEmprestimoDoLivro(Livro livro) {
         return emprestimos.stream()
                 .anyMatch(e -> e.getExemplar().getLivro().equals(livro));
@@ -52,6 +44,13 @@ public abstract class Usuario {
 
     public void removerEmprestimo(Emprestimo emprestimo) { this.emprestimos.remove(emprestimo); }
 
+    public void adicionarReserva(Reserva reserva) { this.reservas.add(reserva); }
+
+    public abstract int getTempoEmprestimo();
+    public abstract int getLimiteEmprestimosAberto();
+    public List<Emprestimo> getEmprestimos() {
+        return emprestimos;
+    }
     public String getIdUsuario() { return idUsuario; }
     public String getNome() {
         return nome;
@@ -59,7 +58,7 @@ public abstract class Usuario {
     public List<Reserva> getReservas() {
         return reservas;
     }
-    public IRegraEmprestimo getRegraEmprestimo() {
+    public RegraEmprestimo getRegraEmprestimo() {
         return regraEmprestimo;
     }
 

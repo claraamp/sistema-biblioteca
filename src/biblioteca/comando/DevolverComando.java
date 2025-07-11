@@ -7,20 +7,15 @@ import biblioteca.dominio.Livro;
 import biblioteca.excecao.DevolucaoException;
 
 
-public class DevolucaoComando implements IComando {
+public class DevolverComando implements Comando {
 
-    private final DevolucaoService devolucaoService;
-    private final String idUsuario;
-    private final String idLivro;
-
-    public DevolucaoComando(DevolucaoService devolucaoService, String idUsuario, String idLivro) {
-        this.devolucaoService = devolucaoService;
-        this.idUsuario = idUsuario;
-        this.idLivro = idLivro;
-    }
+    public DevolverComando() {}
 
     @Override
-    public void execute() {
+    public void execute(CarregadorParametros carregadorParametros) {
+        String idUsuario = carregadorParametros.getParametroUm();
+        String idLivro = carregadorParametros.getParametroDois();
+
         Repositorio repositorio = Repositorio.obterInstancia();
         Usuario usuario = repositorio.buscarUsuarioPorId(idUsuario);
         Livro livro = repositorio.buscarLivroPorId(idLivro);
@@ -36,7 +31,7 @@ public class DevolucaoComando implements IComando {
         }
 
         try {
-            devolucaoService.realizarDevolucao(usuario, livro);
+            DevolucaoService.realizarDevolucao(usuario, livro);
             System.out.println("Devolução do livro '" + livro.getTitulo() + "' por '" + usuario.getNome() + "' realizada.");
 
         } catch (DevolucaoException e) {
