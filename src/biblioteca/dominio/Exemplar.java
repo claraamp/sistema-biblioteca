@@ -1,18 +1,18 @@
 package biblioteca.dominio;
 
 public class Exemplar {
-    private String codigoExemplar;
+    private String codigo;
     private Livro livro;
     private Emprestimo emprestimoCorrente;
 
 
-    public Exemplar(String codigoExemplar, Livro livro) {
-        this.codigoExemplar = codigoExemplar;
+    public Exemplar(String codigo, Livro livro) {
+        this.codigo = codigo;
         this.livro = livro;
         this.emprestimoCorrente = null;
     }
 
-    public String getCodigoExemplar() { return codigoExemplar; }
+    public String getCodigo() { return codigo; }
 
     public Livro getLivro() {
         return livro;

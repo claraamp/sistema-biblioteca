@@ -9,15 +9,15 @@ import java.util.List;
 import java.util.Objects;
 
 public abstract class Usuario {
-    private String idUsuario;
+    private String codigo;
     private String nome;
     private List<Emprestimo> emprestimos;
     private List<Reserva> reservas;
     protected RegraEmprestimo regraEmprestimo;
 
 
-    public Usuario(String idUsuario, String nome) {
-        this.idUsuario = idUsuario;
+    public Usuario(String codigo, String nome) {
+        this.codigo = codigo;
         this.nome = nome;
         this.emprestimos = new ArrayList<>();
         this.reservas = new ArrayList<>();
@@ -51,7 +51,7 @@ public abstract class Usuario {
     public List<Emprestimo> getEmprestimos() {
         return emprestimos;
     }
-    public String getIdUsuario() { return idUsuario; }
+    public String getCodigo() { return codigo; }
     public String getNome() {
         return nome;
     }
@@ -67,12 +67,12 @@ public abstract class Usuario {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
-        return Objects.equals(idUsuario, usuario.idUsuario);
+        return Objects.equals(codigo, usuario.codigo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idUsuario);
+        return Objects.hash(codigo);
     }
 
 }

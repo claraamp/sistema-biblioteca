@@ -28,16 +28,16 @@ public class Repositorio {
         return instancia;
     }
 
-    public Usuario buscarUsuarioPorId(String idUsuario) {
+    public Usuario buscarUsuarioPorCodigo(String codigo) {
         return usuarios.stream()
-                .filter(u -> u.getIdUsuario().equals(idUsuario))
+                .filter(u -> u.getCodigo().equals(codigo))
                 .findFirst()
                 .orElse(null);
     }
 
-    public Livro buscarLivroPorId(String idLivro) {
+    public Livro buscarLivroPorCodigo(String codigo) {
         return livros.stream()
-                .filter(l -> l.getIdLivro().equals(idLivro))
+                .filter(l -> l.getCodigo().equals(codigo))
                 .findFirst()
                 .orElse(null);
     }

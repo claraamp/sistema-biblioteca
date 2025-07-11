@@ -4,8 +4,8 @@ import biblioteca.regras.RegraEmprestimoAluno;
 
 public class AlunoPosGraduacao extends Usuario{
 
-    public AlunoPosGraduacao(String idUsuario, String nome) {
-        super(idUsuario, nome);
+    public AlunoPosGraduacao(String codigo, String nome) {
+        super(codigo, nome);
         this.regraEmprestimo = new RegraEmprestimoAluno();
     }
 

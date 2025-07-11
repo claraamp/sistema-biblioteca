@@ -13,26 +13,26 @@ public class DevolverComando implements Comando {
 
     @Override
     public void execute(CarregadorParametros carregadorParametros) {
-        String idUsuario = carregadorParametros.getParametroUm();
-        String idLivro = carregadorParametros.getParametroDois();
+        String codigoUsuario = carregadorParametros.getParametroUm();
+        String codigoLivro = carregadorParametros.getParametroDois();
 
         Repositorio repositorio = Repositorio.obterInstancia();
-        Usuario usuario = repositorio.buscarUsuarioPorId(idUsuario);
-        Livro livro = repositorio.buscarLivroPorId(idLivro);
+        Usuario usuario = repositorio.buscarUsuarioPorCodigo(codigoUsuario);
+        Livro livro = repositorio.buscarLivroPorCodigo(codigoLivro);
 
         if (usuario == null) {
-            System.out.println("Erro: Usuário com código '" + idUsuario + "' não encontrado.");
+            System.out.println("Erro: Usuário com código '" + codigoUsuario + "' não encontrado.");
             return;
         }
 
         if (livro == null) {
-            System.out.println("Erro: Livro com código '" + idLivro + "' não encontrado.");
+            System.out.println("Erro: Livro com código '" + codigoLivro + "' não encontrado.");
             return;
         }
 
         try {
             DevolucaoService.realizarDevolucao(usuario, livro);
-            System.out.println("Devolução do livro '" + livro.getTitulo() + "' por '" + usuario.getNome() + "' realizada.");
+            System.out.println("Devolução do livro '" + livro.getTitulo() + "' por '" + usuario.getNome() + "' realizada com sucesso.");
 
         } catch (DevolucaoException e) {
             System.out.println(e.getMessage());

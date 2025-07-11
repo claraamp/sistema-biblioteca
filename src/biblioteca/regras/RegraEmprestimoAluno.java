@@ -33,7 +33,6 @@ public class RegraEmprestimoAluno implements RegraEmprestimo {
             throw new EmprestimoException("Não foi possível realizar o empréstimo, pois todos os exemplares disponíveis estão reservados.");
         }
 
-
         if (usuario.temEmprestimoDoLivro(livro)) {
             throw new EmprestimoException("Não foi possível realizar o empréstimo, pois o usuário já possui um exemplar deste livro.");
         }

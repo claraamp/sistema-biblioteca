@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class Livro {
-    private String idLivro;
+    private String codigo;
     private String titulo;
     private String editora;
     private List<String> autores;
@@ -15,8 +15,8 @@ public class Livro {
     private List<Exemplar> exemplares = new ArrayList<>();
     private List<Reserva> reservas = new ArrayList<>();
 
-    public Livro(String idLivro, String titulo, String editora, List<String> autores, String edicao, int anoDePublicacao) {
-        this.idLivro = idLivro;
+    public Livro(String codigo, String titulo, String editora, List<String> autores, String edicao, int anoDePublicacao) {
+        this.codigo = codigo;
         this.titulo = titulo;
         this.editora = editora;
         this.autores = autores;
@@ -42,8 +42,8 @@ public class Livro {
     public Optional<Exemplar> getExemplarDisponivel() {
         return exemplares.stream().filter(e -> !e.isEmprestado()).findFirst();
     }
-    public String getIdLivro() {
-        return idLivro;
+    public String getCodigo() {
+        return codigo;
     }
     public String getTitulo() {
         return titulo;
@@ -72,8 +72,8 @@ public class Livro {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Livro livro = (Livro) o;
-        return Objects.equals(idLivro, livro.idLivro);
+        return Objects.equals(codigo, livro.codigo);
     }
     @Override
-    public int hashCode() { return Objects.hash(idLivro); }
+    public int hashCode() { return Objects.hash(codigo); }
 }

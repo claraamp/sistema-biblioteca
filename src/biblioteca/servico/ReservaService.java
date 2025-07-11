@@ -12,11 +12,11 @@ public class ReservaService {
     public Reserva realizarReserva(Usuario usuario, Livro livro) throws ReservaException {
 
         if (usuario.temEmprestimoDoLivro(livro)) {
-            throw new ReservaException("Você não pode reservar um livro que já está em sua posse.");
+            throw new ReservaException("Não foi possível realizar a reserva, pois o usuário não pode reservar um livro que já está em sua posse.");
         }
 
         if (livro.usuarioTemReserva(usuario)) {
-            throw new ReservaException("Você já possui uma reserva para este livro.");
+            throw new ReservaException("Não foi possível realizar a reserva, pois o usuário já possui uma reserva para este livro.");
         }
 
         Reserva novaReserva = new Reserva(livro, LocalDate.now(), usuario);

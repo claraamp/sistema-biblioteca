@@ -14,22 +14,22 @@ public class EmprestarComando implements Comando {
 
     @Override
     public void execute(CarregadorParametros carregadorParametros) {
-        String idUsuario = carregadorParametros.getParametroUm();
-        String idLivro = carregadorParametros.getParametroDois();
+        String codigoUsuario = carregadorParametros.getParametroUm();
+        String codigoLivro = carregadorParametros.getParametroDois();
 
         EmprestimoService emprestimoService = new EmprestimoService();
 
         Repositorio repositorio = Repositorio.obterInstancia();
-        Usuario usuario = repositorio.buscarUsuarioPorId(idUsuario);
-        Livro livro = repositorio.buscarLivroPorId(idLivro);
+        Usuario usuario = repositorio.buscarUsuarioPorCodigo(codigoUsuario);
+        Livro livro = repositorio.buscarLivroPorCodigo(codigoLivro);
 
         if (usuario == null) {
-            System.out.println("Erro: Usuário com código '" + idUsuario + "' não encontrado.");
+            System.out.println("Erro: Usuário com código '" + codigoUsuario + "' não encontrado.");
             return;
         }
 
         if (livro == null) {
-            System.out.println("Erro: Livro com código '" + idLivro + "' não encontrado.");
+            System.out.println("Erro: Livro com código '" + codigoLivro + "' não encontrado.");
             return;
         }
 
@@ -37,8 +37,8 @@ public class EmprestarComando implements Comando {
             Emprestimo emprestimo = emprestimoService.realizarEmprestimo(usuario, livro);
 
             System.out.println("Empréstimo realizado!");
-            System.out.println("  - Usuário: " + usuario.getNome() + " (" + usuario.getIdUsuario() + ")");
-            System.out.println("  - Livro: " + livro.getTitulo() + " (" + livro.getIdLivro() + ")");
+            System.out.println("  - Usuário: " + usuario.getNome() + " (" + usuario.getCodigo() + ")");
+            System.out.println("  - Livro: " + livro.getTitulo() + " (" + livro.getCodigo() + ")");
             System.out.println("  - Data para devolução: " + emprestimo.getDataDevolucao());
 
         } catch (EmprestimoException e) {

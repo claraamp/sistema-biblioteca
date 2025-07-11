@@ -17,13 +17,13 @@ public class ConsultarLivroComando implements Comando {
 
     @Override
     public void execute(CarregadorParametros carregadorParametros) {
-        String idLivro = carregadorParametros.getParametroUm();
+        String codigoLivro = carregadorParametros.getParametroUm();
 
         Repositorio repositorio = Repositorio.obterInstancia();
-        Livro livro = repositorio.buscarLivroPorId(idLivro);
+        Livro livro = repositorio.buscarLivroPorCodigo(codigoLivro);
 
         if (livro == null) {
-            System.out.println("Erro: Livro com código '" + idLivro + "' não encontrado.");
+            System.out.println("Erro: Livro com código '" + codigoLivro + "' não encontrado.");
             return;
         }
 
@@ -48,13 +48,13 @@ public class ConsultarLivroComando implements Comando {
             System.out.println("  Nenhum exemplar cadastrado para este livro.");
         } else {
             for (Exemplar exemplar : exemplares) {
-                System.out.print("  - Exemplar " + exemplar.getCodigoExemplar() + ": ");
+                System.out.print("  - Exemplar " + exemplar.getCodigo() + ": ");
                 if (exemplar.isEmprestado()) {
                     Emprestimo emprestimoCorrente = exemplar.getEmprestimoCorrente();
                     Usuario usuarioDoEmprestimo = emprestimoCorrente.getUsuario();
 
                     System.out.println("Emprestado para " + usuarioDoEmprestimo.getNome() +
-                            " (cód. " + usuarioDoEmprestimo.getIdUsuario() + ")" +
+                            " (cód. " + usuarioDoEmprestimo.getCodigo() + ")" +
                             " | Data do Empréstimo: " + emprestimoCorrente.getDataEmprestimo().format(formatter) +
                             " | Devolução Prevista: " + emprestimoCorrente.getDataDevolucao().format(formatter));
                 } else {

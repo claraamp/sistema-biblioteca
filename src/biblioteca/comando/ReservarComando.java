@@ -12,22 +12,22 @@ public class ReservarComando implements Comando {
 
     @Override
     public void execute(CarregadorParametros carregadorParametros) {
-        String idUsuario = carregadorParametros.getParametroUm();
-        String idLivro = carregadorParametros.getParametroDois();
+        String codigoUsuario = carregadorParametros.getParametroUm();
+        String codigoLivro = carregadorParametros.getParametroDois();
 
         Repositorio repositorio = Repositorio.obterInstancia();
         ReservaService reservaService = new ReservaService();
 
-        Usuario usuario = repositorio.buscarUsuarioPorId(idUsuario);
-        Livro livro = repositorio.buscarLivroPorId(idLivro);
+        Usuario usuario = repositorio.buscarUsuarioPorCodigo(codigoUsuario);
+        Livro livro = repositorio.buscarLivroPorCodigo(codigoLivro);
 
         if (usuario == null) {
-            System.out.println("Erro: Usuário com código '" + idUsuario + "' não encontrado.");
+            System.out.println("Erro: Usuário com código '" + codigoUsuario + "' não encontrado.");
             return;
         }
 
         if (livro == null) {
-            System.out.println("Erro: Livro com código '" + idLivro + "' não encontrado.");
+            System.out.println("Erro: Livro com código '" + codigoLivro + "' não encontrado.");
             return;
         }
 

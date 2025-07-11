@@ -36,8 +36,8 @@ public class InterfaceUsuario {
     public void iniciar() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("\n--- Sistema de Biblioteca ---");
-        System.out.println("Comandos disponíveis:");
+        System.out.println("\n--- Biblioteca UFBA ---");
+        System.out.println("Bem-vinde ao Sistema de Biblioteca da UFBA! Comandos disponíveis:");
         System.out.println("  > Para realizar um empréstimo, digite: emp <cod_usuario> <cod_livro>");
         System.out.println("  > Para realizar uma devolução, digite: dev <cod_usuario> <cod_livro>");
         System.out.println("  > Para realizar uma reserva, digite: res <cod_usuario> <cod_livro>");
