@@ -19,7 +19,7 @@ public class InterfaceUsuario {
         comandos.put("res", new ReservarComando());
         //comandos.put("obs", new )
         comandos.put("liv", new ConsultarLivroComando());
-        //comandos.put("usu", new ConsultarUsuarioComando());
+        comandos.put("usu", new ConsultarUsuarioComando());
         //comandos.put("ntf", new );
 
     }

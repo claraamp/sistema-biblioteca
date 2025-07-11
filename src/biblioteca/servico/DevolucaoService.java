@@ -19,10 +19,10 @@ public class DevolucaoService {
             throw new DevolucaoException("Empréstimo para o livro '" + livro.getTitulo() + "' não encontrado para o usuário '" + usuario.getNome() + "'.");
         }
 
-        Emprestimo emprestimoParaRemover = emprestimoOpt.get();
-        Exemplar exemplarParaDevolver = emprestimoParaRemover.getExemplar();
+        Emprestimo emprestimoParaFinalizar = emprestimoOpt.get();
+        Exemplar exemplarParaDevolver = emprestimoParaFinalizar.getExemplar();
 
-        usuario.removerEmprestimo(emprestimoParaRemover);
+        usuario.finalizarEmprestimo(emprestimoParaFinalizar);
         exemplarParaDevolver.setEmprestimoCorrente(null);
     }
 }

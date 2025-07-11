@@ -14,6 +14,7 @@ public abstract class Usuario {
     private List<Emprestimo> emprestimos;
     private List<Reserva> reservas;
     protected RegraEmprestimo regraEmprestimo;
+    private List<Emprestimo> historicoEmprestimos;
 
 
     public Usuario(String codigo, String nome) {
@@ -21,6 +22,7 @@ public abstract class Usuario {
         this.nome = nome;
         this.emprestimos = new ArrayList<>();
         this.reservas = new ArrayList<>();
+        this.historicoEmprestimos = new ArrayList<>();
     }
 
     public boolean isDevedor() {
@@ -42,9 +44,12 @@ public abstract class Usuario {
         this.emprestimos.add(emprestimo);
     }
 
-    public void removerEmprestimo(Emprestimo emprestimo) { this.emprestimos.remove(emprestimo); }
-
     public void adicionarReserva(Reserva reserva) { this.reservas.add(reserva); }
+
+    public void finalizarEmprestimo(Emprestimo emprestimo) {
+        this.emprestimos.remove(emprestimo);
+        this.historicoEmprestimos.add(emprestimo);
+    }
 
     public abstract int getTempoEmprestimo();
     public abstract int getLimiteEmprestimosAberto();
@@ -61,6 +66,8 @@ public abstract class Usuario {
     public RegraEmprestimo getRegraEmprestimo() {
         return regraEmprestimo;
     }
+    public List<Emprestimo> getHistoricoEmprestimos() { return historicoEmprestimos; }
+
 
     @Override
     public boolean equals(Object o) {
