@@ -28,10 +28,10 @@ public class ConsultarUsuarioComando implements Comando{
 
 
         System.out.println("--- Empréstimos em Curso ---");
-        if (usuario.getEmprestimos().isEmpty()) {
+        if (usuario.getEmprestimosEmAberto().isEmpty()) {
             System.out.println("Nenhum empréstimo em curso.");
         } else {
-            for (Emprestimo emprestimo : usuario.getEmprestimos()) {
+            for (Emprestimo emprestimo : usuario.getEmprestimosEmAberto()) {
                 System.out.println("  - Livro: " + emprestimo.getExemplar().getLivro().getTitulo());
                 System.out.println("     Data do Empréstimo: " + emprestimo.getDataEmprestimo().format(formatter));
                 System.out.println("     Status: Em curso");

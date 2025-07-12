@@ -19,7 +19,7 @@ public class RegraEmprestimoAluno implements RegraEmprestimo {
             throw new EmprestimoException("Não foi possível realizar o empréstimo, pois o usuário possui livros em atraso.");
         }
 
-        if (usuario.getEmprestimos().size() >= usuario.getLimiteEmprestimosAberto()) {
+        if (usuario.getEmprestimosEmAberto().size() >= usuario.getLimiteEmprestimosAberto()) {
             throw new EmprestimoException("Não foi possível realizar o empréstimo, pois o usuário atingiu o limite de " + usuario.getLimiteEmprestimosAberto() + " livros.");
         }
 

@@ -11,7 +11,7 @@ import java.util.Optional;
 public class DevolucaoService {
 
     public static void realizarDevolucao(Usuario usuario, Livro livro) throws DevolucaoException {
-        Optional<Emprestimo> emprestimoOpt = usuario.getEmprestimos().stream()
+        Optional<Emprestimo> emprestimoOpt = usuario.getEmprestimosEmAberto().stream()
                 .filter(e -> e.getExemplar().getLivro().equals(livro))
                 .findFirst();
 

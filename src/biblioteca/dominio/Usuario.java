@@ -11,7 +11,7 @@ import java.util.Objects;
 public abstract class Usuario {
     private String codigo;
     private String nome;
-    private List<Emprestimo> emprestimos;
+    private List<Emprestimo> emprestimosEmAberto;
     private List<Reserva> reservas;
     protected RegraEmprestimo regraEmprestimo;
     private List<Emprestimo> historicoEmprestimos;
@@ -20,14 +20,14 @@ public abstract class Usuario {
     public Usuario(String codigo, String nome) {
         this.codigo = codigo;
         this.nome = nome;
-        this.emprestimos = new ArrayList<>();
+        this.emprestimosEmAberto = new ArrayList<>();
         this.reservas = new ArrayList<>();
         this.historicoEmprestimos = new ArrayList<>();
     }
 
     public boolean isDevedor() {
         final LocalDate hoje = LocalDate.now();
-        for (Emprestimo emprestimo : emprestimos) {
+        for (Emprestimo emprestimo : emprestimosEmAberto) {
             if (hoje.isAfter(emprestimo.getDataDevolucao())) {
                 return true;
             }
@@ -36,25 +36,25 @@ public abstract class Usuario {
     }
 
     public boolean temEmprestimoDoLivro(Livro livro) {
-        return emprestimos.stream()
+        return emprestimosEmAberto.stream()
                 .anyMatch(e -> e.getExemplar().getLivro().equals(livro));
     }
 
     public void adicionarEmprestimo(Emprestimo emprestimo) {
-        this.emprestimos.add(emprestimo);
+        this.emprestimosEmAberto.add(emprestimo);
     }
 
     public void adicionarReserva(Reserva reserva) { this.reservas.add(reserva); }
 
     public void finalizarEmprestimo(Emprestimo emprestimo) {
-        this.emprestimos.remove(emprestimo);
+        this.emprestimosEmAberto.remove(emprestimo);
         this.historicoEmprestimos.add(emprestimo);
     }
 
     public abstract int getTempoEmprestimo();
     public abstract int getLimiteEmprestimosAberto();
-    public List<Emprestimo> getEmprestimos() {
-        return emprestimos;
+    public List<Emprestimo> getEmprestimosEmAberto() {
+        return emprestimosEmAberto;
     }
     public String getCodigo() { return codigo; }
     public String getNome() {
