@@ -17,10 +17,10 @@ public class InterfaceUsuario {
         comandos.put("emp", new EmprestarComando());
         comandos.put("dev", new DevolverComando());
         comandos.put("res", new ReservarComando());
-        //comandos.put("obs", new )
+        comandos.put("obs", new ObservarLivroComando());
         comandos.put("liv", new ConsultarLivroComando());
         comandos.put("usu", new ConsultarUsuarioComando());
-        //comandos.put("ntf", new );
+        comandos.put("ntf", new ConsultarNotificacoesComando());
 
     }
 

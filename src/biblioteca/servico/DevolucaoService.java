@@ -4,7 +4,7 @@ import biblioteca.dominio.Emprestimo;
 import biblioteca.dominio.Usuario;
 import biblioteca.dominio.Livro;
 import biblioteca.dominio.Exemplar;
-import biblioteca.excecao.DevolucaoException;
+import biblioteca.exceptions.DevolucaoException;
 
 import java.util.Optional;
 

@@ -4,7 +4,7 @@ import biblioteca.servico.DevolucaoService;
 import biblioteca.repositorio.Repositorio;
 import biblioteca.dominio.Usuario;
 import biblioteca.dominio.Livro;
-import biblioteca.excecao.DevolucaoException;
+import biblioteca.exceptions.DevolucaoException;
 
 
 public class DevolverComando implements Comando {

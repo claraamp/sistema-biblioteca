@@ -1,4 +1,4 @@
-package biblioteca.excecao;
+package biblioteca.exceptions;
 
 public class ReservaException extends RuntimeException {
     public ReservaException(String message) {

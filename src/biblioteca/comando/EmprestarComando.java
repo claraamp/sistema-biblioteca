@@ -4,7 +4,7 @@ import biblioteca.servico.EmprestimoService;
 import biblioteca.repositorio.Repositorio;
 import biblioteca.dominio.Usuario;
 import biblioteca.dominio.Livro;
-import biblioteca.excecao.EmprestimoException;
+import biblioteca.exceptions.EmprestimoException;
 import biblioteca.dominio.Emprestimo;
 
 

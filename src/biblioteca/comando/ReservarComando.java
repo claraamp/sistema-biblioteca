@@ -4,7 +4,7 @@ import biblioteca.repositorio.Repositorio;
 import biblioteca.servico.ReservaService;
 import biblioteca.dominio.Usuario;
 import biblioteca.dominio.Livro;
-import biblioteca.excecao.ReservaException;
+import biblioteca.exceptions.ReservaException;
 
 public class ReservarComando implements Comando {
 

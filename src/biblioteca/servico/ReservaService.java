@@ -3,7 +3,7 @@ package biblioteca.servico;
 import biblioteca.dominio.Livro;
 import biblioteca.dominio.Reserva;
 import biblioteca.dominio.Usuario;
-import biblioteca.excecao.ReservaException;
+import biblioteca.exceptions.ReservaException;
 
 import java.time.LocalDate;
 

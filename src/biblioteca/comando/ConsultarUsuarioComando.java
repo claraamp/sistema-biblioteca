@@ -27,15 +27,15 @@ public class ConsultarUsuarioComando implements Comando{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 
-        System.out.println("--- Empréstimos em Curso ---");
+        System.out.println("--- Empréstimos em Aberto ---");
         if (usuario.getEmprestimosEmAberto().isEmpty()) {
-            System.out.println("Nenhum empréstimo em curso.");
+            System.out.println("Nenhum empréstimo em aberto.");
         } else {
             for (Emprestimo emprestimo : usuario.getEmprestimosEmAberto()) {
-                System.out.println("  - Livro: " + emprestimo.getExemplar().getLivro().getTitulo());
-                System.out.println("     Data do Empréstimo: " + emprestimo.getDataEmprestimo().format(formatter));
-                System.out.println("     Status: Em curso");
-                System.out.println("     Devolução Prevista: " + emprestimo.getDataDevolucao().format(formatter));
+                System.out.println("  > Livro: " + emprestimo.getExemplar().getLivro().getTitulo());
+                System.out.println("    - Data do Empréstimo: " + emprestimo.getDataEmprestimo().format(formatter));
+                System.out.println("    - Status: Em curso");
+                System.out.println("    - Devolução Prevista: " + emprestimo.getDataDevolucao().format(formatter));
             }
         }
 
@@ -44,10 +44,10 @@ public class ConsultarUsuarioComando implements Comando{
             System.out.println("Nenhum empréstimo no histórico.");
         } else {
             for (Emprestimo emprestimo : usuario.getHistoricoEmprestimos()) {
-                System.out.println("  - Livro: " + emprestimo.getExemplar().getLivro().getTitulo());
-                System.out.println("     Data do Empréstimo: " + emprestimo.getDataEmprestimo().format(formatter));
-                System.out.println("     Status: Finalizado");
-                System.out.println("     Devolução Prevista era: " + emprestimo.getDataDevolucao().format(formatter));
+                System.out.println("  > Livro: " + emprestimo.getExemplar().getLivro().getTitulo());
+                System.out.println("    - Data do Empréstimo: " + emprestimo.getDataEmprestimo().format(formatter));
+                System.out.println("    - Status: Finalizado");
+                System.out.println("    - Devolução Prevista era: " + emprestimo.getDataDevolucao().format(formatter));
             }
         }
 
@@ -56,8 +56,8 @@ public class ConsultarUsuarioComando implements Comando{
             System.out.println("Nenhuma reserva ativa.");
         } else {
             for (Reserva reserva : usuario.getReservas()) {
-                System.out.println("  - Livro: " + reserva.getLivro().getTitulo());
-                System.out.println("     Data da Reserva: " + reserva.getDataReserva().format(formatter));
+                System.out.println("  > Livro: " + reserva.getLivro().getTitulo());
+                System.out.println("    - Data da Reserva: " + reserva.getDataReserva().format(formatter));
             }
         }
 

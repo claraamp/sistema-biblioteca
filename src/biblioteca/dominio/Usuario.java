@@ -1,5 +1,7 @@
 package biblioteca.dominio;
 
+import biblioteca.observer.Observador;
+import biblioteca.observer.Sujeito;
 import biblioteca.regras.RegraEmprestimo;
 
 
@@ -8,13 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Usuario {
+public abstract class Usuario implements Observador {
     private String codigo;
     private String nome;
     private List<Emprestimo> emprestimosEmAberto;
     private List<Reserva> reservas;
     protected RegraEmprestimo regraEmprestimo;
     private List<Emprestimo> historicoEmprestimos;
+    private int contadorNotificacoes;
 
 
     public Usuario(String codigo, String nome) {
@@ -23,6 +26,7 @@ public abstract class Usuario {
         this.emprestimosEmAberto = new ArrayList<>();
         this.reservas = new ArrayList<>();
         this.historicoEmprestimos = new ArrayList<>();
+        this.contadorNotificacoes = 0;
     }
 
     public boolean isDevedor() {
@@ -51,6 +55,12 @@ public abstract class Usuario {
         this.historicoEmprestimos.add(emprestimo);
     }
 
+    @Override
+    public void atualizar(Sujeito sujeito) {
+        this.contadorNotificacoes++;
+        System.out.println("[System Log] Notificando observador " + this.getNome() + ". Total de notificações: " + this.contadorNotificacoes);
+    }
+
     public abstract int getTempoEmprestimo();
     public abstract int getLimiteEmprestimosAberto();
     public List<Emprestimo> getEmprestimosEmAberto() {
@@ -67,7 +77,7 @@ public abstract class Usuario {
         return regraEmprestimo;
     }
     public List<Emprestimo> getHistoricoEmprestimos() { return historicoEmprestimos; }
-
+    public int getContadorNotificacoes() { return contadorNotificacoes; }
 
     @Override
     public boolean equals(Object o) {
