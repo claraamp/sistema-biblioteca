@@ -51,11 +51,7 @@ public class Livro implements Sujeito {
     public void registrarObservador(Observador observador) {
         this.observadores.add(observador);
     }
-    @Override
-    public void removerObservador(Observador observador) {
-        this.observadores.remove(observador);
 
-    }
     @Override
     public void notificarObservadores() {
         for (Observador observador : this.observadores) {
@@ -86,6 +82,7 @@ public class Livro implements Sujeito {
         Livro livro = (Livro) o;
         return Objects.equals(codigo, livro.codigo);
     }
+
     @Override
     public int hashCode() { return Objects.hash(codigo); }
 }
